@@ -13,3 +13,14 @@ var glist = new Vue({
 		gbriefs:[]
 	}
 });
+
+
+
+
+
+var gdetail = new Vue({
+	el:'#ddd',
+	data:{
+		detail:[]
+	}
+});

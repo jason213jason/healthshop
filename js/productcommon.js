@@ -1,5 +1,5 @@
 
-jQuery.ljsGlasses = {
+$.ljsGlasses = {
     pcGlasses:function(_obj){
 		var _box = $("#"+_obj.boxid);
 		var _sum = $("#"+_obj.sumid);

@@ -27,6 +27,16 @@ img {
     display: block;
 }
 
+.classf {
+    display: block;
+    border: 2px solid #e8e8e8;
+    padding-left: 30px;
+    max-width: 1080px;
+    height: 32px;
+    margin: 0 auto;
+    color: #404040;
+}
+
 .container {
     max-width: 1080px;
     margin: 0 auto;

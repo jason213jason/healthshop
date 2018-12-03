@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="css/slick-theme.css">
     
     <script type="text/javascript" src="js/zty/vue.js"></script>
+    <script type="text/javascript" src="js/zty/COOKIE.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/zty/sortJump.js"></script>
+
 </head>
 <body>
 <div class="top-nav">
@@ -53,9 +56,11 @@
 
         <!--  分类目录  -->
         <div class="col-2 cat" id="sort" >
+            
             <div v-for="(per,index) in row">
-                <div class="row">{{per.name}}</div>
+                <div class="row"><a class="sortJump" vdata-url="nav" style="color: white;" data-key="" :href="'javascript:jumpSort('+per.id+');'">{{per.name}}</a></div>
             </div>
+            
         </div>
 
 
@@ -173,6 +178,7 @@
 
     <script type="text/javascript" src="js/zty/vueObjects.js"></script>
     <script type="text/javascript" src="js/searchlist.js"></script>
+    
     <script type="text/javascript">
         $(document).ready(function(){
             $.ajax({
@@ -187,6 +193,11 @@
                 error:function(e){
                     console.log(e);
                 }
+            });
+            $(".sortJump").click(function(){
+                var url = './searchlist.html?'+$(this).attr('jump');
+                console.log(url);
+                // location.href = url;
             });
         })
     </script>

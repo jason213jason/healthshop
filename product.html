@@ -6,43 +6,13 @@
     <title>详情页面</title>
     <link href="css/productdetail.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/productcommon.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var showproduct = {
-                "boxid":"showbox",
-                "sumid":"showsum",
-                "boxw":400,
-                "boxh":550,
-                "sumw":60,//列表每个宽度,该版本中请把宽高填写成一样
-                "sumh":60,//列表每个高度,该版本中请把宽高填写成一样
-                "sumi":7,//列表间隔
-                "sums":5,//列表显示个数
-                "sumsel":"sel",
-                "sumborder":1,//列表边框，没有边框填写0，边框在css中修改
-                "lastid":"showlast",
-                "nextid":"shownext"
-            };//参数定义
-            $.ljsGlasses.pcGlasses(showproduct);//方法调用，务必在加载完后执行
-            $(function(){
-                $('.tabs a').click(function(){
-                    var $this=$(this);
-                    $('.panel').hide();
-                    $('.tabs a.active').removeClass('active');
-                    $this.addClass('active').blur();
-                    var panel=$this.attr("href");
-                    $(panel).show();
-                    return fasle;  //告诉浏览器  不要纸箱这个链接
-                })//end click
-                $(".tabs li:first a").click()   //web 浏览器，单击第一个标签吧
-            })//end ready
-            $(".centerbox li").click(function(){
-                $("li").removeClass("now");
-                $(this).addClass("now")
-            });
-        });
-    </script>
+    
+    
+    <script type="text/javascript" src="js/zty/vue.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/zty/COOKIE.js"></script>
+    
 </head>
 
 <body>
@@ -62,24 +32,26 @@
     </div>
 </div>
 <!--header结束-->
+<div id="ddd">
 <!--商品详情部分-->
-<div class="shopdetails">
-        <img src="images/1.png" width="400" height="550" />
+<div class="shopdetails" >
+        <img :src="detail.smallPic" width="400" height="550" />
 <!--展示图片-->
         
     <div class="centerbox">
-        <p class="imgname">人参</p>
-        <p class="Aprice">价格：<samp>￥89.00</samp></p>
-        <p class="price">促销价：<samp>￥49.00</samp></p>
-        <p class="youhui">店铺活动<samp>促销</samp></p>
-        <p class="kefu">客服：</p>
+        <p class="imgname">{{detail.name}}</p>
+        <p class="Aprice">价格：<samp>￥{{detail.price}}</samp></p>
+        <p class="price">促销价：<samp>￥{{detail.price}}</samp></p>
+        <p class="youhui">店铺活动<samp>促销</samp></p><br>
+        <div style="display: flex;"><h4 style="margin:0 2%;">已售出：{{detail.buy}} </h4> <h4 style="margin:0 2%;">库存：{{detail.volume}}</h4></div>
+        <p class="kefu" style="margin-top: 0">客服：</p>
         <ul>
             <li class="kuanshi">样式：</li>
-            <li class="now shopimg"><a href="#" title="人参"><img src="images/1.png" width="45" height="45"
+            <li class="now shopimg"><a href="#" :title="detail.name"><img :src="detail.smallPic" width="45" height="45"
             ></a></li>
         </ul>
         <div class="clear"></div>
-        <p class="chima">规格：500克（g）</p>
+        <p class="chima">规格：500克</p>
         <p class="buy"><a href="#" id="firstbuy">立即购买</a><a href="#">加入购物车</a></p>
         <div class="clear"></div>
         <p class="fuwu">服务承诺：</p>
@@ -89,22 +61,23 @@
     <!--右边-->
     <div class="rightbox">
         <p class="name">——热卖商品</p>
-       <img src="images/1.png" width="130" height="180">
-        <p>￥158元</p>
+       <img :src="detail.smallPic" width="130" height="180">
+        <p>￥{{detail.price}}</p>
 
-        <img src="images/1.png" width="130" height="180">
-        <p>￥158元</p>
+        <img :src="detail.smallPic" width="130" height="180">
+        <p>￥{{detail.price}}</p>
 
 
-        <img src="images/1.png" width="130" height="180">
-        <p>￥158元</p>
+        <img :src="detail.smallPic" width="130" height="180">
+        <p>￥{{detail.price}}</p>
     </div>
 
 </div>
 <!--商品详情部分结束-->
 <!---商品详情评价部分-->
 
-    <div class="evaluate">
+
+<div class="evaluate">
     <div class="tabbedPanels">
         <ul class="tabs">
             <li><a href="#panel01">商品详情</a></li>
@@ -112,17 +85,21 @@
 
         <div class="panelContainer">
             <div class="panel" id="panel01">
+                
                 <p class="sell">商品描述</p>
-                <p>简单描述</p>
+
+                <p>{{detail.description}}</p>
                 <p></p>
+
                 <p class="sell">商品照片</p>
-                <img src="images/1.png" height="946" width="1024"/>
+                <img :src="detail.smallPic" height="946" width="1024"/>
                 <div class="clear"></div>
             </div>
         </div>
     </div>
 </div>
 
+</div>
 <!-- 商品详情评价部结束分-->
 
 <!-- footer -->
@@ -165,6 +142,36 @@
         </ul><div class="clear"></div>
     </div>
 </div>
-
+<div id="detail"></div>
+<div id="sort"></div>
+<div id="gbrief-list"></div>
 </body>
+
+<!-- <script type="text/javascript" src="js/productcommon.js"></script> -->
+<script type="text/javascript" src="js/zty/vueObjects.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+        var getId = function(){
+            var reg = new RegExp("(^|&)id=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        };
+        $(document).ready(function(){
+            $.ajax({
+                url:'health/gdetail/one',
+                methods:'GET',
+                dataType:'json',
+                data:{
+                    id:getId()
+                },
+                success:function(result){
+                    console.log(result);
+                    gdetail.detail = result.data;
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
+        })
+    </script>
 </html>

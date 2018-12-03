@@ -1,12 +1,14 @@
-﻿$(function () {
+﻿
+$(function () {
     /*页面初始化，key在输入框内显示*/
     /*获取关键字*/
-    var urlparams = abc.getParamsByUrl();
-    var $input = $('#input').val(urlparams.key || '');
+    var urlparams = abc.getUrlKey('key');
+    var $input = $('#input').val(urlparams || '');
 
     /*页面初始化，根据关键字查询第一页数据4条*/
     getsearchdata({
-        pername:urlparams.key,
+        pername:urlparams,
+        sortId:abc.getUrlKey('sortId')
 
     },function (data) {
         /*渲染数据*/
@@ -37,15 +39,32 @@
     });
 });
 var  getsearchdata = function (params,callback) {
-    console.log(params.pername);
-    $.ajax({
+    console.log(params);
+    if (params.sortId != null) {
+        $.ajax({
+            url:'./health/gbrief/bySort',
+            type:'get',
+            data: {
+                sortId:params.sortId
+            },
+            dataType:'json',
+            success:function (result) {
+                console.log(result);
+                glist.gbriefs = result.data;
+            }
+        });
+    }else{
+        $.ajax({
         url:'./health/gbrief/search',
         type:'get',
-        data: {key:params.pername},
+        data: {
+            key:params.pername
+        },
         dataType:'json',
         success:function (result) {
             console.log(result);
             glist.gbriefs = result.data;
         }
     });
+    }
 };

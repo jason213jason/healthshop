@@ -12,6 +12,8 @@
     <script type="text/javascript" src="js/zty/vue.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/zty/COOKIE.js"></script>
+    <script type="text/javascript" src="js/zty/sortJump.js"></script>
 </head>
 <body>
 <div class="top-nav">
@@ -45,10 +47,24 @@
     </div>
 </div>
     
-        
+
+<!--分类行-->
+        <div class="classf" id="sort">
+          <div class="items" v-for="(per,index) in row">
+
+            <div class="items-inner col-2" >
+              <a class="item-url sortJump" :href="'javascript:jumpSort('+per.id+');'" vdata-url="nav" data-key="">
+                  <span class="text">{{per.name}}</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
 
 <div class="container" id="gbrief-list">
     <div class="promote-title">热门推荐</div>
+
+         
 
     <div v-for="per in gbriefs">
         <div class="promote-seg col-2">
@@ -111,4 +127,21 @@
 </body>
 <script type="text/javascript" src="js/zty/vueObjects.js"></script>
 <script type="text/javascript" src="js/searchlist.js"></script>
+<script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:'health/sort/getList',
+                methods:'GET',
+                dataType:'json',
+
+                success:function(result){
+                    console.log(result);
+                    vueSort.row = result.data;
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
+        })
+    </script>
 </html>
