@@ -40,7 +40,7 @@ var  getsearchdata = function (params,callback) {
     $.ajax({
         url:'./health/gbrief/getList',
         type:'get',
-        data: {sortId:''},
+        data: {sortId:'0'},
         dataType:'json',
         success:function (result) {
             console.log(result);

@@ -173,22 +173,22 @@
 
     <script type="text/javascript" src="js/zty/vueObjects.js"></script>
     <script type="text/javascript" src="js/searchlist.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $.ajax({
-            url:'health/sort/getList',
-            methods:'GET',
-            dataType:'json',
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:'health/sort/getList',
+                methods:'GET',
+                dataType:'json',
 
-            success:function(result){
-                console.log(result);
-                vueSort.row = result.data;
-            },
-            error:function(e){
-                console.log(e);
-            }
-        });
-    })
-</script>
+                success:function(result){
+                    console.log(result);
+                    vueSort.row = result.data;
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
+        })
+    </script>
 
 </html>
