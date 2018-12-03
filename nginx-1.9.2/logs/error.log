@@ -2017,3 +2017,6 @@
 2018/12/02 22:05:28 [notice] 20068#21352: signal process started
 2018/12/02 22:07:00 [emerg] 18484#18884: invalid number of arguments in "root" directive in E:\IDEApractice\abc\healthshop\nginx-1.9.2/conf/nginx.conf:57
 2018/12/02 22:07:18 [error] 13456#19892: *2 CreateFile() "E:\IDEApractice\abc\healthshop\nginx-1.9.2/../css/ajax-loader.gif" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /css/ajax-loader.gif HTTP/1.1", host: "localhost:8081", referrer: "http://localhost:8081/css/slick-theme.css"
+2018/12/03 21:44:41 [emerg] 1544#8624: CreateDirectory() "F:\study\jidi\temp\healthshop\nginx-1.9.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2018/12/03 21:48:46 [emerg] 8868#5808: CreateDirectory() "F:\study\jidi\temp\healthshop\nginx-1.9.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2018/12/03 21:50:24 [emerg] 8432#8732: CreateDirectory() "F:\study\jidi\temp\healthshop\nginx-1.9.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
