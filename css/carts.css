@@ -399,3 +399,18 @@ a:hover{
     border: 1px solid #d9d9d9;
     color: #3c3c3c;
 }
+.addressBox {
+    width: 100%;
+    margin: 15px 20px 20px 20px;
+    display: block;
+}
+.addressBox .addchoice a{
+    font-size: 30px;
+    color: #3c3c3c;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.addressBox .address {
+    display: block;
+    margin: 20px 0 20px 100px;
+}
