@@ -37,10 +37,11 @@
     });
 });
 var  getsearchdata = function (params,callback) {
+    console.log(params.pername);
     $.ajax({
-        url:'./health/gbrief/getList',
+        url:'./health/gbrief/search',
         type:'get',
-        data: {sortId:'0'},
+        data: {key:params.pername},
         dataType:'json',
         success:function (result) {
             console.log(result);

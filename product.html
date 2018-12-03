@@ -25,11 +25,8 @@
                 "nextid":"shownext"
             };//参数定义
             $.ljsGlasses.pcGlasses(showproduct);//方法调用，务必在加载完后执行
-
             $(function(){
-
                 $('.tabs a').click(function(){
-
                     var $this=$(this);
                     $('.panel').hide();
                     $('.tabs a.active').removeClass('active');
@@ -38,31 +35,18 @@
                     $(panel).show();
                     return fasle;  //告诉浏览器  不要纸箱这个链接
                 })//end click
-
-
                 $(".tabs li:first a").click()   //web 浏览器，单击第一个标签吧
-
-
-
             })//end ready
-
             $(".centerbox li").click(function(){
                 $("li").removeClass("now");
                 $(this).addClass("now")
-
             });
-
-
         });
-
-
-
-
     </script>
 </head>
 
 <body>
-<!-----header部分------->
+<!--header部分-->
 <div class="top-nav">
     <div class="container">
         <div class="fl">
@@ -77,8 +61,8 @@
         </div>
     </div>
 </div>
-<!-----header结束------->
-<!-----商品详情部分------->
+<!--header结束-->
+<!--商品详情部分-->
 <div class="shopdetails">
         <img src="images/1.png" width="400" height="550" />
 <!--展示图片-->
@@ -102,7 +86,7 @@
         <p class="pay">支付方式：</p>
     </div>
 
-    <!-----右边------->
+    <!--右边-->
     <div class="rightbox">
         <p class="name">——热卖商品</p>
        <img src="images/1.png" width="130" height="180">
@@ -117,8 +101,8 @@
     </div>
 
 </div>
-<!-----商品详情部分结束------->
-<!-----商品详情评价部分------->
+<!--商品详情部分结束-->
+<!---商品详情评价部分-->
 
     <div class="evaluate">
     <div class="tabbedPanels">
@@ -139,9 +123,9 @@
     </div>
 </div>
 
-<!-----商品详情评价部结束分------->
+<!-- 商品详情评价部结束分-->
 
-<!----footer----->
+<!-- footer -->
 <div class="backf">
     <div id="footer">
         <ul>

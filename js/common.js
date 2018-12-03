@@ -4,7 +4,7 @@ window.abc ={};
         var params = {};
         var search = location.search;
         if (search){
-            search = search.replace('?',' ');
+            search = search.replace('?','');
             var arr = search.split('&');
             arr.forEach(function (item,i) {
                 var itemArr = item.split('=');
