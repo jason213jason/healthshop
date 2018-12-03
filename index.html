@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/slick-theme.css">
-
+    
+    <script type="text/javascript" src="js/zty/vue.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/searchlist.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/zty/vueObject.js"></script>
 </head>
 <body>
 <div class="top-nav">
@@ -121,7 +128,7 @@
         5. 库存 
 
         自动对齐-->
-<div class="container">
+<div class="container" id="gbrief-list">
     <div class="promote-title">热门推荐</div>
     <div class="promote-seg col-2">
         <div class="BOX">  
@@ -273,11 +280,7 @@
         </div>
     </div>
 </div>
-<script src="js/jquery.js"></script>
-<script src="js/common.js"></script>
-<script src="js/searchlist.js"></script>
-<script src="js/search.js"></script>
-<script src="js/slick.min.js"></script>
+
 <script>
     $('.slider').slick({
         autoplay: true,
