@@ -1,6 +1,6 @@
 /* 目录 */
 var vueSort = new Vue({
-	el:'#sort',
+	el:'.cat',
 	data:{
 		row:[]
 	}
@@ -8,7 +8,7 @@ var vueSort = new Vue({
 
 /* 首页商品 */
 var glist = new Vue({
-	el:'#gbrief-list',
+	el:'#gbrief-list'
 	data:{
 		gbriefs:[]
 	}

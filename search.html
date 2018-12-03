@@ -8,11 +8,8 @@
     <title>搜索</title>
     <link rel="stylesheet" href="http://cdn.bootcss.com/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
 
-    <script type="text/javascript" src="js/zty/vue.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/search.js"></script>
 </head>
 <body>
 <div class="top-nav">
@@ -47,43 +44,6 @@
 </div>
 
 
-
-<div class="container" id="gbrief-list">
-    <div class="promote-title">热门推荐</div>
-
-    <div v-for="per in gbriefs">
-        <div class="promote-seg col-2">
-            <div class="BOX">  
-                    <div class="PicBox">
-                        <div class="pic-box-inner">
-                            <div class="pic">
-                                <a :id="'id_'+per.id" class="" data-nid="" data-recommend-nav="" :href="'./product.html?id='+per.id" target="_blank" >
-                                <img :src="per.smallPic"  alt=" ">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="IconMoreNew">
-                <div class="clearfix"> 
-                <div class="price">
-                    <span>¥</span>
-                    <strong>{{per.price}}</strong>
-                </div>
-                <div class="deal-cnt">{{per.buy}}人付款</div>
-                    </div>
-                    <strong>{{per.name}}</strong>
-                        <div class="row-2">
-                                库存：{{per.volume}}
-                        </div>
-                    </div>
-            </div>   
-        </div>
-    </div>
-
-</div>
-
-
-
 <div class="footer">
     <div class="container">
         <a href="#">联系我们</a>
@@ -96,10 +56,9 @@
         </div>
     </div>
 </div>
-
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/search.js"></script>
 
 </body>
-
-<script type="text/javascript" src="js/zty/vueObjects.js"></script>
-<script type="text/javascript" src="js/searchlist.js"></script>
 </html>
