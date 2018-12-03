@@ -11,13 +11,10 @@
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/slick-theme.css">
     
-    <script type="text/javascript" src="js/zty/vue.min.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/zty/vue.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/searchlist.js"></script>
-    <script type="text/javascript" src="js/search.js"></script>
     <script type="text/javascript" src="js/slick.min.js"></script>
-    <script type="text/javascript" src="js/zty/vueObject.js"></script>
 </head>
 <body>
 <div class="top-nav">
@@ -40,8 +37,8 @@
             <img src="image/logo.jpg" height="50" width="249"/>
         </div>
         <div class="search-bar col-5">
-                <input type="search" class="col-8" placeholder="">
-            <a href="search.html">搜索</a>
+                <input type="search" class="col-8" placeholder="搜索">
+            <a href="javascript:;">搜索</a>
         </div>
         <div class="cart">
             <div class="trigger">
@@ -52,22 +49,17 @@
 </div>
 <div class="main-promote clearf">
     <div class="container">
-        <div class="col-2 cat">
 
 
-
-            <div class="row">中西医药 / 补肾</div>
-            <div class="row">中西医药 / 瘦身减肥</div>
-            <div class="row">中西医药 / 皮肤</div>
-            <div class="row">人群健康 / 秋季养护</div>
-            <div class="row">人群健康 / 美颜瘦身</div>
-            <div class="row">人群健康 / 补钙</div>
-            <div class="row">滋补调养 / 保健食品</div>
-            <div class="row">滋补调养 / 补钙保健</div>
-            <div class="row">滋补调养 / 字不重要</div>
-            <div class="row">母婴孕产 / 奶粉</div>
-            <div class="row">居家生活 / 环境清洁</div>
+        <!--  分类目录  -->
+        <div class="col-2 cat" id="sort" >
+            <div v-for="(per,index) in row">
+                <div class="row">{{per.name}}</div>
+            </div>
         </div>
+
+
+
         <div class="col-6">
                 <div class="slider">
                     <div>
@@ -130,141 +122,36 @@
         自动对齐-->
 <div class="container" id="gbrief-list">
     <div class="promote-title">热门推荐</div>
-    <div class="promote-seg col-2">
-        <div class="BOX">  
-                <div class="PicBox">
-                    <div class="pic-box-inner">
-                        <div class="pic">
-                            <a id="" class="" data-nid="" data-recommend-nav="" href="" target="_blank" >
-                            <img src="image/cart.jpg"  alt=" ">
-                            </a>
+
+    <div v-for="per in gbriefs">
+        <div class="promote-seg col-2">
+            <div class="BOX">  
+                    <div class="PicBox">
+                        <div class="pic-box-inner">
+                            <div class="pic">
+                                <a :id="'id_'+per.id" class="" data-nid="" data-recommend-nav="" :href="'./product.html?id='+per.id" target="_blank" >
+                                <img :src="per.smallPic"  alt=" ">
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    <div class="IconMoreNew">
+                <div class="clearfix"> 
+                <div class="price">
+                    <span>¥</span>
+                    <strong>{{per.price}}</strong>
                 </div>
-                <div class="IconMoreNew">
-            <div class="clearfix"> 
-            <div class="price">
-            <span>¥</span>
-            <strong>1399.00</strong>
-            </div>
-            <div class="deal-cnt">42088人付款</div>
-                </div>
-                    <div class="row-2">
-                        <a id="" href="" target="_blank" ">
-                            商品介绍balabalabalabalabala
-                        </a>
+                <div class="deal-cnt">{{per.buy}}人付款</div>
                     </div>
-                </div>
-        </div>   
-    </div>
-    <div class="promote-seg col-2">
-        <div class="BOX">  
-                <div class="PicBox">
-                    <div class="pic-box-inner">
-                        <div class="pic">
-                            <a id="" class="" data-nid="" data-recommend-nav="" href="" target="_blank" >
-                            <img src="image/cart.jpg"  alt=" ">
-                            </a>
+                    <strong>{{per.name}}</strong>
+                        <div class="row-2">
+                                库存：{{per.volume}}
                         </div>
                     </div>
-                </div>
-                <div class="IconMoreNew">
-            <div class="clearfix"> 
-            <div class="price">
-            <span>¥</span>
-            <strong>1399.00</strong>
-            </div>
-            <div class="deal-cnt">42088人付款</div>
-                </div>
-                    <div class="row-2">
-                        <a id="" href="" target="_blank" ">
-                            商品介绍balabalabalabalabala
-                        </a>
-                    </div>
-                </div>
-        </div>   
+            </div>   
+        </div>
     </div>
-    <div class="promote-seg col-2">
-        <div class="BOX">  
-                <div class="PicBox">
-                    <div class="pic-box-inner">
-                        <div class="pic">
-                            <a id="" class="" data-nid="" data-recommend-nav="" href="" target="_blank" >
-                            <img src="image/cart.jpg"  alt=" ">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="IconMoreNew">
-            <div class="clearfix"> 
-            <div class="price">
-            <span>¥</span>
-            <strong>1399.00</strong>
-            </div>
-            <div class="deal-cnt">42088人付款</div>
-                </div>
-                    <div class="row-2">
-                        <a id="" href="" target="_blank" ">
-                            商品介绍balabalabalabalabala
-                        </a>
-                    </div>
-                </div>
-        </div>   
-    </div>
-    <div class="promote-seg col-2">
-        <div class="BOX">  
-                <div class="PicBox">
-                    <div class="pic-box-inner">
-                        <div class="pic">
-                            <a id="" class="" data-nid="" data-recommend-nav="" href="" target="_blank" >
-                            <img src="image/cart.jpg"  alt=" ">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="IconMoreNew">
-            <div class="clearfix"> 
-            <div class="price">
-            <span>¥</span>
-            <strong>1399.00</strong>
-            </div>
-            <div class="deal-cnt">42088人付款</div>
-                </div>
-                    <div class="row-2">
-                        <a id="" href="" target="_blank" ">
-                            商品介绍balabalabalabalabala
-                        </a>
-                    </div>
-                </div>
-        </div>   
-    </div>
-    <div class="promote-seg col-2">
-        <div class="BOX">  
-                <div class="PicBox">
-                    <div class="pic-box-inner">
-                        <div class="pic">
-                            <a id="" class="" data-nid="" data-recommend-nav="" href="" target="_blank" >
-                            <img src="image/cart.jpg"  alt=" ">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="IconMoreNew">
-            <div class="clearfix"> 
-            <div class="price">
-            <span>¥</span>
-            <strong>1399.00</strong>
-            </div>
-            <div class="deal-cnt">42088人付款</div>
-                </div>
-                    <div class="row-2">
-                        <a id="" href="" target="_blank" ">
-                            商品介绍balabalabalabalabala
-                        </a>
-                    </div>
-                </div>
-        </div>   
-    </div>
+
 </div>
    
 </div>
@@ -281,22 +168,27 @@
     </div>
 </div>
 
-<script>
-    $('.slider').slick({
-        autoplay: true,
-        autoplaySpeed: 1000,
-        arrows: false
-    });
-    //  var count = 1;
-    //  setInterval(function () {
-    //    count++;
-    //    if (count > 3) count = 1;
-    //    var ele = $('.slider').find('img')
-    //    $.when(ele.fadeOut())
-    //      .done(function () {
-    //        ele.fadeIn().attr('src', 'image/slider_0' + count + '.png')
-    //      })
-    //  }, 3000);
-</script>
 </body>
+
+
+    <script type="text/javascript" src="js/zty/vueObjects.js"></script>
+    <script type="text/javascript" src="js/searchlist.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url:'health/sort/getList',
+            methods:'GET',
+            dataType:'json',
+
+            success:function(result){
+                console.log(result);
+                vueSort.row = result.data;
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
+    })
+</script>
+
 </html>

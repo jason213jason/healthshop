@@ -13,6 +13,12 @@
         $('.product').html(template('list',data));
     })
 
+    $('.search-bar a').on('click',function(){
+        /*跳转去搜索列表 带上key*/
+        var key =$.trim($('input').val());
+        location.href = 'searchlist.html?key='+key;
+    });
+
     /*用户点击搜索根据新关键字搜索商品，重置排序功能*/
     $('.search a').on('tap',function () {
         var key = $.trim($input.val());
@@ -34,10 +40,11 @@ var  getsearchdata = function (params,callback) {
     $.ajax({
         url:'./health/gbrief/getList',
         type:'get',
-        data: {search:''},
+        data: {sortId:''},
         dataType:'json',
-        success:function (data) {
-            console.log(data);
+        success:function (result) {
+            console.log(result);
+            glist.gbriefs = result.data;
         }
     });
 };
