@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-<html lang="en">
-<script src="js/jquery.min.js"></script>
-<script src="js/carts.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/zty/vue.js"></script>
+<script type="text/javascript" src="js/zty/COOKIE.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,10 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>购物车</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/carts.css">                     
+    <link rel="stylesheet" href="css/carts.css">                  
 </head>
 <body>
-<section class="cartMain">
+<section class="cartMain" id="order">
     <div class="cartMain_hd">
         <ul class="order_lists cartTop">
             <li class="list_chk">
@@ -30,143 +30,56 @@
             <li class="list_op">操作</li>
         </ul>
     </div>
-    <!--店铺盒子-->
-    <div class="cartBox">
-        <div class="shop_info">
-            <div class="all_check">
-                <!--店铺全选-->
-                <input type="checkbox" id="shop_a" class="shopChoice">
-                <label for="shop_a" class="shop"></label>
+   
+        <!--店铺盒子-->
+        <div class="cartBox">
+            <div class="shop_info">
+                <div class="all_check">
+                    <!--店铺全选-->
+                    <input type="checkbox" id="shop_b" class="shopChoice">
+                    <label for="shop_b" class="shop"></label>
+                </div>
+                <div class="shop_name">
+                    店铺：<a href="javascript:;">阿里中药房</a>
+                </div>
             </div>
-            <div class="shop_name">
-                店铺：<a href="javascript:;">阿里大药房</a>
+            <div v-for="(per,index) in list" v-if="per.paid == false">
+            <!--商品列-->
+            <div class="order_content">
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_4" class="son_check">
+                        <label for="checkbox_4"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img :src="per.smallPic" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">{{per.name}}</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：g（克）</p>
+                        <p>尺寸：500</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥{{per.price}}</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" @click="buyD(index)" class="reduce reSty">-</a>
+                            <input type="text" :value="per.buy" class="sum">
+                            <a href="javascript:;" @click="buyP(index)" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥{{per.price * per.buy}}</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <!--商品列-->
-        <div class="order_content">
-            <ul class="order_lists">
-                <li class="list_chk">
-                    <input type="checkbox" id="checkbox_2" class="son_check">
-                    <label for="checkbox_2"></label>
-                </li>
-                <li class="list_con">
-                    <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-                    <div class="list_text"><a href="javascript:;">人参五两</a></div>
-                </li>
-                <li class="list_info">
-                    <p>规格：g（克）</p>
-                    <p>尺寸：250</p>
-                </li>
-                <li class="list_price">
-                    <p class="price">￥666</p>
-                </li>
-                <li class="list_amount">
-                    <div class="amount_box">
-                        <a href="javascript:;" class="reduce reSty">-</a>
-                        <input type="text" value="1" class="sum">
-                        <a href="javascript:;" class="plus">+</a>
-                    </div>
-                </li>
-                <li class="list_sum">
-                    <p class="sum_price">￥666</p>
-                </li>
-                <li class="list_op">
-                    <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--店铺盒子-->
-    <div class="cartBox">
-        <div class="shop_info">
-            <div class="all_check">
-                <!--店铺全选-->
-                <input type="checkbox" id="shop_b" class="shopChoice">
-                <label for="shop_b" class="shop"></label>
-            </div>
-            <div class="shop_name">
-                店铺：<a href="javascript:;">阿里中药房</a>
             </div>
         </div>
-        <!--商品列-->
-        <div class="order_content">
-            <ul class="order_lists">
-                <li class="list_chk">
-                    <input type="checkbox" id="checkbox_4" class="son_check">
-                    <label for="checkbox_4"></label>
-                </li>
-                <li class="list_con">
-                    <div class="list_img"><a href="javascript:;"><img src="images/2.png" alt=""></a></div>
-                    <div class="list_text"><a href="javascript:;">灵芝</a></div>
-                </li>
-                <li class="list_info">
-                    <p>规格：g（克）</p>
-                    <p>尺寸：500</p>
-                </li>
-                <li class="list_price">
-                    <p class="price">￥2018</p>
-                </li>
-                <li class="list_amount">
-                    <div class="amount_box">
-                        <a href="javascript:;" class="reduce reSty">-</a>
-                        <input type="text" value="1" class="sum">
-                        <a href="javascript:;" class="plus">+</a>
-                    </div>
-                </li>
-                <li class="list_sum">
-                    <p class="sum_price">￥2018</p>
-                </li>
-                <li class="list_op">
-                    <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--店铺盒子-->
-    <div class="cartBox">
-        <div class="shop_info">
-            <div class="all_check">
-                <!--店铺全选-->
-                <input type="checkbox" id="shop_c" class="shopChoice">
-                <label for="shop_c" class="shop"></label>
-            </div>
-            <div class="shop_name">
-                店铺：<a href="javascript:;">阿里小药房</a>
-            </div>
-        </div>
-        <!--商品列-->
-        <div class="order_content">
-            <ul class="order_lists">
-                <li class="list_chk">
-                    <input type="checkbox" id="checkbox_8" class="son_check">
-                    <label for="checkbox_8"></label>
-                </li>
-                <li class="list_con">
-                    <div class="list_img"><a href="javascript:;"><img src="images/3.png" alt=""></a></div>
-                    <div class="list_text"><a href="javascript:;">维生素c</a></div>
-                </li>
-                <li class="list_info">
-                    <p>规格：220g/瓶</p>
-                    <p>数量：3</p>
-                </li>
-                <li class="list_price">
-                    <p class="price">￥300</p>
-                </li>
-                <li class="list_amount">
-                    <div class="amount_box">
-                        <a href="javascript:;" class="reduce reSty">-</a>
-                        <input type="text" value="1" class="sum">
-                        <a href="javascript:;" class="plus">+</a>
-                    </div>
-                </li>
-                <li class="list_sum">
-                    <p class="sum_price">￥300</p>
-                </li>
-                <li class="list_op">
-                    <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
-                </li>
-            </ul>
-        </div>
+    
     </div>
     <!--底部-->
     <div class="bar-wrapper">
@@ -191,28 +104,30 @@
             </div>
         <!--地址详情-->
        <div class="address">
-            <ul class="address_lists">
+            <ul class="address_lists" v-for="(per,index) in list">
                 <div class="addressdetails">
                     <div class="addr-hd" title="邮编：" data="">
                         <span data style="font-size: 20px" >邮编：</span>
-                        <span class="postcode" data style="font-size: 20px">510006</span>
+                        <span class="postcode" data style="font-size: 20px">{{per.postcode}}</span>
                         <span class="last" data="">&nbsp;</span>
                     </div>
                     <div class="addr-add" title="详细地址" data="">
-                        <span class="province" data style="font-size: 20px">广东省</span>
-                        <span class="city" data style="font-size: 20px">广州市</span>
-                        <span class="detail" data style="font-size: 20px">广州中医药大学生活区</span>
+                        <span class="province" data style="font-size: 20px">{{per.province}}</span>
+                        <span class="city" data style="font-size: 20px">{{per.city}}</span>
+                        <span class="detail" data style="font-size: 20px">{{per.detail}}</span>
                         <span class="last" data="">&nbsp;</span>
                     </div>
                     <div class="add-num" title="电话收件人" data="">
                         <span data style="font-size: 20px">电话 :</span>
-                        <span class="phone" style="font-size: 20px" data="">18320444501</span> 
-                        <span data style="font-size: 20px">（</span><span class="name" data style="font-size: 20px">某某某</span><span data style="font-size: 20px"> 收）</span>
+                        <span class="phone" style="font-size: 20px" data="">{{per.phonenumber}}</span> 
+                        <span data style="font-size: 20px">（</span><span class="name" data style="font-size: 20px">{{per.recipient}}</span><span data style="font-size: 20px"> 收）</span>
                     </div>
                 </div>
             </ul>
         </div>
     </div>
 </body>
-
+<script type="text/javascript" src="js/zty/vueObjects.js"></script>
+<script type="text/javascript" src="js/carts.js"></script>
+<script type="text/javascript" src="js/zty/cart.js"></script>
 </html>

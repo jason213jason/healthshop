@@ -14,6 +14,7 @@ $(document).ready(function(){
                 console.log(result);
                 var data = result.resultMsg;
                 cookie.set("token",data,0.1);
+                cookie.set("userId",result.data.id,0.1);
                 location.href = '/';
             },
             error:function(e){

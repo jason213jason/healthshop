@@ -61,7 +61,7 @@ var  getsearchdata = function (params,callback) {
         });
     }else if (params.pername != null){
         $.ajax({
-            url:'./health/gbrief/bySort',
+            url:'./health/gbrief/search',
             type:'get',
             data: {
                 key:params.pername

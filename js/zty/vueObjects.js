@@ -15,12 +15,32 @@ var glist = new Vue({
 });
 
 
-
+var orders = new Vue({
+	el:'#order',
+	data:{
+		list:[]
+	},
+	methods:{
+		buyP:function(index){
+			this.list[index].buy = this.list[index].buy + 1;
+		},
+		buyD:function(index){
+			this.list[index].buy = this.list[index].buy - 1;
+		}
+	}
+});
 
 
 var gdetail = new Vue({
 	el:'#ddd',
 	data:{
 		detail:[]
+	}
+});
+
+var address = new Vue({
+	el:'.address',
+	data:{
+		list:[]
 	}
 });
