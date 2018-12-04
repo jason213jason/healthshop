@@ -126,22 +126,50 @@
 </script>
 </body>
 <script type="text/javascript" src="js/zty/vueObjects.js"></script>
-<script type="text/javascript" src="js/searchlist.js"></script>
+
 <script type="text/javascript">
         $(document).ready(function(){
+            // $.ajax({
+            //     url:'health/user/login',
+            //     type:'POST',
+            //     dataType:'json',
+            //     data:{
+            //         phonenumber:18320444515,
+            //         password:123
+            //     },
+            //     headers: {
+            //         //Bearer是我的项目需要的,你可以按你的需求规范格式
+            //         'token': cookie.get("token"),
+            //     },
+            //     success:function(result){
+            //         console.log(result);
+            //         var data = result.resultMsg;
+            //         cookie.set("token",data,0.1);
+            //     },
+            //     error:function(e){
+            //         console.log(e);
+            //     }
+            // });
             $.ajax({
                 url:'health/sort/getList',
-                methods:'GET',
+                type:'GET',
                 dataType:'json',
-
+                headers: {
+                    //Bearer是我的项目需要的,你可以按你的需求规范格式
+                    'token': cookie.get("token"),
+                },
                 success:function(result){
                     console.log(result);
                     vueSort.row = result.data;
                 },
                 error:function(e){
                     console.log(e);
+                    alert("请重新登录");
+                    location.href = 'login.html'
                 }
             });
+            
         })
     </script>
+    <script type="text/javascript" src="js/searchlist.js"></script>
 </html>
