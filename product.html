@@ -52,7 +52,7 @@
         </ul>
         <div class="clear"></div>
         <p class="chima">规格：500克</p>
-        <p class="buy"><a href="#" id="firstbuy">立即购买</a><a href="#">加入购物车</a></p>
+        <p class="buy"><a href="#" id="firstbuy">立即购买</a><a href="#" id="throwCart">加入购物车</a></p>
         <div class="clear"></div>
         <p class="fuwu">服务承诺：</p>
         <p class="pay">支付方式：</p>
@@ -149,6 +149,7 @@
 
 <!-- <script type="text/javascript" src="js/productcommon.js"></script> -->
 <script type="text/javascript" src="js/zty/vueObjects.js"></script>
+
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
         var getId = function(){
@@ -156,7 +157,12 @@
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
         };
+        var userId = cookie.get("userId");
+        var gbId = getId();
+        var buy = 1;
+        var addressId = 0;
         $(document).ready(function(){
+            /* 加载详情数据 */
             $.ajax({
                 url:'health/gdetail/one',
                 methods:'GET',
@@ -172,6 +178,59 @@
                     console.log(e);
                 }
             });
+
+            /* 扔进购物车 */
+            $("#throwCart").click(function(){
+                $.ajax({
+                    url:'health/orders/add',
+                    type:'POST',
+                    dataType:'json',
+                    data:{
+                        userId: userId,
+                        gbriefId: gbId,
+                        buy: buy,
+                        addressId: addressId
+                    },
+                    headers: {
+                        //Bearer是我的项目需要的,你可以按你的需求规范格式
+                        'token': cookie.get("token"),
+                    },
+                    success:function(result){
+                        console.log(result);
+                        
+                    },
+                    error:function(e){
+                        console.log(e);
+                    }
+                });
+            });
+
+            /* 立即购买 */
+            $("#firstbuy").click(function(){
+                $.ajax({
+                    url:'health/orders/add',
+                    type:'POST',
+                    dataType:'json',
+                    data:{
+                        userId: userId,
+                        gbriefId: gbId,
+                        buy: buy,
+                        addressId: addressId
+                    },
+                    headers: {
+                        //Bearer是我的项目需要的,你可以按你的需求规范格式
+                        'token': cookie.get("token"),
+                    },
+                    success:function(result){
+                        console.log(result);
+                        location.href = 'cart.html';
+                    },
+                    error:function(e){
+                        console.log(e);
+                    }
+                });
+            })
         })
-    </script>
+</script>
+<script type="text/javascript" src="js/zty/buy.js"></script>    
 </html>

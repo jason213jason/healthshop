@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/myorder.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/zty/vue.js"></script>
+	<script type="text/javascript" src="js/zty/COOKIE.js"></script>
+	
+   <title>订单页面</title>            
+</head>
+<body>
+<div class="mt-header" data="">
+	<div class="tabs">
+		<div class="tabs-mod">
+			<span class="nav-mod">
+				<span class="mod-text">所有订单</span>
+			</span>
+			<span class="mod-text2">|</span>
+		</div>
+		<div class="tabs-mod">
+			<span class="nav-mod">
+				<span class="mod-text">待付款</span>
+			</span>
+			<span class="mod-text2">|</span>
+		</div>
+		<div class="tabs-mod">
+			<span class="nav-mod">
+				<span class="mod-text">待评价</span>
+			</span>
+			<span class="mod-text2">|</span>
+		</div>
+	</div>
+</div>
+<div class="mylist" data="">
+	<div class="tablist">
+		<div class="tablist-mod">
+			<span class="navlist-mod">
+				<span class="modlist-text">商品</span>
+			</span>
+			<span class="modlist-text2">|</span>
+		</div>
+		<div class="tablist-mod">
+			<span class="navlist-mod">
+				<span class="modlist-text">单价</span>
+			</span>
+			<span class="modlist-text2">|</span>
+		</div>
+		<div class="tablist-mod">
+			<span class="navlist-mod">
+				<span class="modlist-text">数量</span>
+			</span>
+			<span class="modlist-text2">|</span>
+		</div>
+		<div class="tablist-mod">
+			<span class="navlist-mod">
+				<span class="modlist-text">实付款</span>
+			</span>
+			<span class="modlist-text2">|</span>
+		</div>
+		<div class="tablist-mod">
+			<span class="navlist-mod">
+				<span class="modlist-text">交易状态</span>
+			</span>
+		</div>
+	</div>
+</div>
+	<div class="cartBox">
+		<div class="order_content" id="order">
+            <ul class="order_lists"  v-for="(per,index) in list" v-if="per.paid == true">
+                <div class="list_chk">
+                    <input type="checkbox" id="checkbox_2" class="son_check">
+                    <label for="checkbox_2"></label>
+                </div>
+                <div class="list_con">
+                    <div class="list_img"><a href="javascript:;"><img :src="per.smallPic" alt=""></a></div>
+                    <div class="list_text"><a href="javascript:;">{{per.name}}</a></div>
+                </div>
+                <div class="list_info">
+                	<p class="price">￥{{per.price}}</p>
+                    <p>规格：g（克）</p>
+                    <p>尺寸：250</p>
+                </div>
+                <div class="list_amount">
+                    <div class="amount_box">
+                        <input type="text" :value="per.buy" class="sum">
+                    </div>
+                </div>
+                <div class="list_sum">
+                    <p class="sum_price">￥{{per.price * per.buy}}</p>
+                </div>
+                <div class="list_op">
+                    <p class="del"><a href="javascript:;" class="delBtn">成功</a></p>
+                </div>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/zty/vueObjects.js"></script>
+<script type="text/javascript">
+	var userId = cookie.get("userId");
+	$(document).ready(function(){
+		$.ajax({
+        url:'health/orders/user',
+        type:'GET',
+        dataType:'json',
+        data:{
+            userId:userId
+        },
+        headers: {
+            //Bearer是我的项目需要的,你可以按你的需求规范格式
+            'token': cookie.get("token"),
+        },
+        success:function(result){
+            console.log(result);
+            orders.list = result.data;
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+	})
+</script>
+</html>
